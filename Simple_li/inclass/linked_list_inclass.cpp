@@ -45,7 +45,7 @@ node* find_node(int k)
 	while (temp->key != k && temp != tail)
 		temp = temp->next;
 	return temp;
-}// ¡Ú Ã£°íÀÚ ÇÏ´Â key ¸¦ °¡Áø node ÀÇ order À» ¹ÝÈ¯ÇÒ ¼ö ÀÖ³ª¿ä? -> ½ÃÇè
+}// â˜… ì°¾ê³ ìž í•˜ëŠ” key ë¥¼ ê°€ì§„ node ì˜ order ì„ ë°˜í™˜í•  ìˆ˜ ìžˆë‚˜ìš”? -> ì‹œí—˜
 
 int get_order_find_node(int k)
 {
