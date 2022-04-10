@@ -2,43 +2,72 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 10
-int stack[MAX];
-int top;
+typedef struct _node {
+	int key;
+	struct _node* next;
+}node;
+
+node* head, * tail;
 
 void init_stack()
 {
-	top = -1;
+	head = (node*)calloc(1, sizeof(node));
+	tail = (node*)calloc(1, sizeof(node));
+	head->next = tail;
+	tail->next = tail;
 }
-int push(int t)
-{
-	if (top >= MAX - 1)
-	{
-		printf("Stack Overflow!!\n");
+
+int push(int k) {
+	node* t;
+	if ((t = (node*)malloc(sizeof(node))) == NULL) {
+		printf("Out of Memory !!\n");
 		return -1;
 	}
-	stack[++top] = t;
-	return t;
-}
-int pop()
-{
-	if (top < 0)
-	{
+	t->key = k;
+	t->next = head->next;
+	head->next = t;
+} //새로운 노드는 무조건 head의 뒤에 삽입됨
+
+int pop() {
+	node* t;
+	int k;
+	if (head->next == tail) {
 		printf("Stack Underflow!!\n");
 		return -1;
 	}
-	return stack[top--];
+	t = head->next;
+	k = t->key;
+	head->next = t->next;
+	free(t);
+
+	return k;
 }
-int is_stack_empty()
+void clear()
 {
-	return (top < 0) ? 1 : 0;
+	node* t, *s;
+	t = head->next;
+	while (t != tail)
+	{
+		s = t;
+		t = t->next;
+		free(s);
+	}
+	head->next = tail;
+}
+void print_stack()
+{
+	node* t;
+	t = head->next;
+	while (t != tail)
+	{
+		printf("%-6d", t->key);
+		t = t->next;
+	}
 }
 
-
-//
 int get_stack_top()
 {
-	return (top < 0) ? -1 : stack[top];
+	return (head->next == tail) ? -1 : head->next->key;
 }
 int is_op(int k)
 {
@@ -52,8 +81,11 @@ int precedence(int op)
 	if (op == '*' || op == '/') return 2;
 	else return 3;
 }
-
-void advanced_postfix_arr(char* dst, char* src)
+int is_stack_empty() {
+	if (head->next == tail) return 1;
+	else return 0;
+}
+void advanced_postfix_list(char* dst, char* src)
 {
 	char c;
 	init_stack();
@@ -94,19 +126,18 @@ void advanced_postfix_arr(char* dst, char* src)
 		}
 		else src++;
 	}
-	while (!is_stack_empty())
-	{
+
+	while (!is_stack_empty()){
 		*dst++ = pop();
 		*dst++ = ' ';
 	}
 	*dst = 0;
 }
-//
 
 void main() {
 	char exp[256];
 	char src[256] = "(1*(2+3/4)+5)/6+7";
 
-	advanced_postfix_arr(exp, src);
+	advanced_postfix_list(exp, src);
 	printf("Postfix representation : %s\n", exp);
 }
