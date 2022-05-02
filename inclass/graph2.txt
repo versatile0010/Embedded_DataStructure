@@ -1,0 +1,13 @@
+9 11
+
+AB 4
+AC 1
+CD 1
+BD 2
+BF 1
+FH 1
+DH 3
+DG 2
+CE 2
+AI 9
+IF 1
