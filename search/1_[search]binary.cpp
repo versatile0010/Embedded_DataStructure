@@ -2,7 +2,7 @@
 
 /*
 	Binary search 
-	: ¹İµå½Ã data °¡ sorting µÇ¾îÀÖ¾î¾ß ÇÔ.
+	: ë°˜ë“œì‹œ data ê°€ sorting ë˜ì–´ìˆì–´ì•¼ í•¨.
 
 		Worst case : log(N)     (*) except sorting!
 
@@ -14,7 +14,7 @@
 
 	2. If the size of interval is 0, then key is not here.
 		
-		data °¡ ³Ê¹« Á¶¹ĞÇÏ´Ù¸é ¼º´ÉÀÌ ¶³¾îÁø´Ù -> °³¼±°¡´É
+		data ê°€ ë„ˆë¬´ ì¡°ë°€í•˜ë‹¤ë©´ ì„±ëŠ¥ì´ ë–¨ì–´ì§„ë‹¤ -> ê°œì„ ê°€ëŠ¥
 
 */
 
@@ -36,11 +36,11 @@ int bi_search(int key, int* a, int N)
 int bi_insert(int key, int* a, int* N)
 {
 	int p = 0; int i;
-	while (key > a[p] && p < *N) p++; //µé¾î°¥ ÀÚ¸® Å½»ö
+	while (key > a[p] && p < *N) p++; //ë“¤ì–´ê°ˆ ìë¦¬ íƒìƒ‰
 	for (i = *N; i > p; i--)
-		a[i] = a[i - 1]; // µÚ¿¡ ´Ù ¹Ğ±â.
-	a[p] = key; // ºóÀÚ¸®¿¡ ³Ö±â.
-	(*N)++; // ¹è¿­ Å©±â ÇÏ³ª Áõ°¡.
+		a[i] = a[i - 1]; // ë’¤ì— ë‹¤ ë°€ê¸°.
+	a[p] = key; // ë¹ˆìë¦¬ì— ë„£ê¸°.
+	(*N)++; // ë°°ì—´ í¬ê¸° í•˜ë‚˜ ì¦ê°€.
 
 	return p;
 }
@@ -50,10 +50,10 @@ int bi_delete(int key, int* a, int* N)
 	int i;
 	if (*N > 0)
 	{
-		if ((p = bi_search(key, a, *N)) < 0) return -1; // searching ¸øÇÏ¸é fail
-		// searching µÇ¸é p = key ÀÇ position
+		if ((p = bi_search(key, a, *N)) < 0) return -1; // searching ëª»í•˜ë©´ fail
+		// searching ë˜ë©´ p = key ì˜ position
 		for (i = p + 1; i < *N; i++)
-			a[i - 1] = a[i]; // ¾ÕÀ¸·Î ¹Ğ±â
+			a[i - 1] = a[i]; // ì•ìœ¼ë¡œ ë°€ê¸°
 		(*N)--;
 		return p;
 	}
