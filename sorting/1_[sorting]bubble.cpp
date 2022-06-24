@@ -29,14 +29,14 @@ void bubble_sort(int* a, int N)
 Generalization of bubble sorting
 */
 
-//nelem : µ¥ÀÌÅÍ °³¼ö, width : sizeof(element type)
+//nelem : ë°ì´í„° ê°œìˆ˜, width : sizeof(element type)
 		/*
-		(char*) À¸·Î casting ÇÏ´Â ÀÌÀ¯
-		: ÄÄÆÄÀÏ·¯°¡ ¹è¿­ a[y] ¿¡¼­ a °¡ int* type ÀÎ °ÍÀ» È®ÀÎÇÏ¸é
-		a[y] -> *(a + y * sizeof(int)) ·Î Ä¡È¯ÇÑ´Ù.
-		±×·¯¸é, a[y] ´Â *(type)((char*)a + y * width) ·Î »ç¿ëÇÏÀÚ.
-		(*) 1 byte ÀÎ char* À» »ç¿ëÇÏ¸é sizeof(char) = 1 ÀÌ¹Ç·Î
-		width ¿¡ 1À» °öÇØµµ ÀÇµµ´ë·Î µ¿ÀÛÇÑ´Ù.
+		(char*) ìœ¼ë¡œ casting í•˜ëŠ” ì´ìœ 
+		: ì»´íŒŒì¼ëŸ¬ê°€ ë°°ì—´ a[y] ì—ì„œ a ê°€ int* type ì¸ ê²ƒì„ í™•ì¸í•˜ë©´
+		a[y] -> *(a + y * sizeof(int)) ë¡œ ì¹˜í™˜í•œë‹¤.
+		ê·¸ëŸ¬ë©´, a[y] ëŠ” *(type)((char*)a + y * width) ë¡œ ì‚¬ìš©í•˜ì.
+		(*) 1 byte ì¸ char* ì„ ì‚¬ìš©í•˜ë©´ sizeof(char) = 1 ì´ë¯€ë¡œ
+		width ì— 1ì„ ê³±í•´ë„ ì˜ë„ëŒ€ë¡œ ë™ì‘í•œë‹¤.
 		*/
 void gen_bubble_sort(void* base, int nelem, int width,
 	int (*fcmp)(const void*, const void*))
